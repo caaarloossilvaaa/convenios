@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid())
+  name     String
+  email    String @unique
+  password String
+
+  @@map("users")
+}
+
+model Client {
+  id         String  @id @default(uuid())
+  name       String
+  cpf        String  @unique
+  phone      String?
+  cell       String?
+  zip        String
+  address    String
+  number     String
+  complement String?
+  district   String
+  city       String
+  state      String
+  companyId  String
+
+  company Company   @relation(fields: [companyId], references: [id])
+  Sale    Sale[]
+  Balance Balance[]
+
+  @@map("clients")
+}
+
+model Seller {
+  id    String  @id @default(uuid())
+  name  String
+  cpf   String  @unique
+  phone String?
+  cell  String?
+
+  Sale Sale[]
+
+  @@map("sellers")
+}
+
+model Company {
+  id    String  @id @default(uuid())
+  name  String
+  cnpj  String  @unique
+  city  String
+  phone String?
+  cell  String?
+
+  Client Client[]
+
+  @@map("companies")
+}
+
+model Sale {
+  id       String   @id @default(uuid())
+  date     DateTime @default(now())
+  clientId String
+  sellerId String
+  value    Decimal
+
+  seller Seller @relation(fields: [sellerId], references: [id])
+  client Client @relation(fields: [clientId], references: [id])
+
+  @@map("sales")
+}
+
+model Balance {
+  id           String  @id @default(uuid())
+  clientId     String  @unique
+  totalBalance Decimal
+  balance      Decimal
+
+  client Client @relation(fields: [clientId], references: [id])
+
+  @@map("balances")
+}
