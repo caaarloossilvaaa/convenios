@@ -1,3 +1,4 @@
+import { AuthProvider } from '@/contexts/AuthContext'
 import './globals.css'
 import { ReactNode } from 'react'
 
@@ -9,7 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-br">
-      <body>{children}</body>
+      <body>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   )
 }

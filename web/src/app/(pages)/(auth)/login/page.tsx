@@ -1,13 +1,16 @@
 'use client'
-import { FormEvent, useState } from 'react'
+import { AuthContext } from '@/contexts/AuthContext'
+import { FormEvent, useContext, useState } from 'react'
 
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  function handleSubmit(e: FormEvent) {
+  const { signIn } = useContext(AuthContext)
+
+  async function handleSignIn(e: FormEvent) {
     e.preventDefault()
-    console.log(email, password)
+    await signIn({ email, password })
   }
 
   return (
@@ -25,7 +28,7 @@ export default function Login() {
           </h1>
           <form
             className="space-y-4 md:space-y-6"
-            onSubmit={(e) => handleSubmit(e)}
+            onSubmit={(e) => handleSignIn(e)}
           >
             <div>
               <label

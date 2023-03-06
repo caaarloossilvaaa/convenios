@@ -24,7 +24,7 @@ export async function authRoutes(fastify:FastifyInstance) {
       return { message: 'Email/senha incorretos' }
     }
 
-    const verifyPassword = compare(password, user.password)
+    const verifyPassword = await compare(password, user.password)
     if(!verifyPassword) {
       return { message: 'Email/senha incorretos' }
     }
