@@ -1,5 +1,6 @@
 'use client'
 import { AuthContext } from '@/contexts/AuthContext'
+import Link from 'next/link'
 import { FormEvent, useContext, useState } from 'react'
 
 export default function Login() {
@@ -14,12 +15,12 @@ export default function Login() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 bg-gray-900">
+    <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0 bg-gray-900">
       <a
         href="#"
         className="flex items-center mb-6 text-2xl font-semibold text-white"
       >
-        Sistema de Convenios
+        Sistema de Convênios
       </a>
       <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-gray-800 border-gray-700">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -66,12 +67,20 @@ export default function Login() {
                 required
               />
             </div>
-            <button
-              type="submit"
-              className="w-full bg-gray-900 hover:bg-gray-700 duration-250 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
-            >
-              Login
-            </button>
+            <div className="flex flex-row gap-4">
+              <button
+                type="submit"
+                className="w-full bg-gray-900 hover:bg-gray-700 duration-250 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-primary-600 hover:bg-primary-700 focus:ring-primary-800 duration-200"
+              >
+                Login
+              </button>
+              <Link
+                href="/"
+                className="w-full bg-gray-900 hover:bg-gray-700 duration-250 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-primary-600 hover:bg-primary-700 focus:ring-primary-800 duration-200"
+              >
+                Nova venda
+              </Link>
+            </div>
           </form>
         </div>
       </div>

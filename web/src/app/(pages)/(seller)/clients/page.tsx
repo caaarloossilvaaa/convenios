@@ -1,6 +1,7 @@
 'use client'
 import { EyeIcon } from '@heroicons/react/20/solid'
 import { useEffect, useState } from 'react'
+import env from '@/../environment'
 
 interface IDetailClient {
   name: string
@@ -25,7 +26,8 @@ export default function Client() {
   useEffect(() => {
     setLoading(true)
     const saleData = async () => {
-      const res = await fetch('http://localhost:3333/api/clients')
+      console.log(env.API_URL)
+      const res = await fetch(`${env.API_URL}/clients`)
       const data = await res.json()
       setDataClients(data.clients)
       setLoading(false)

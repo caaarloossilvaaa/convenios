@@ -11,6 +11,7 @@ interface IProps {
   placeHolder: string
   setCompany: (value: SetStateAction<string>) => void
   setBalance: (value: SetStateAction<string>) => void
+  setTotalBalance: (value: SetStateAction<string>) => void
   setClient: (value: SetStateAction<string>) => void
   setClientId: (value: SetStateAction<string>) => void
 }
@@ -43,7 +44,13 @@ export function ComboBoxClient(props: IProps) {
         onChange={(value: any) => {
           setSelectedValue(value)
           props.setCompany(value.company.name)
-          const balance = String(value.Balance[0].totalBalance)
+          const balance = String(value.Balance[0].balance)
+          const balanceTotal = String(value.Balance[0].totalBalance)
+          if (balanceTotal.indexOf('.') !== -1) {
+            props.setTotalBalance(String(balanceTotal).replace('.', ','))
+          } else {
+            props.setTotalBalance(String(balanceTotal) + ',00')
+          }
           if (balance.indexOf('.') !== -1) {
             props.setBalance(String(balance).replace('.', ','))
           } else {

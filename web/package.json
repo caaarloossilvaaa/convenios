@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "pnpm run env:hmg next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "env:hmg": "cross-env ACTIVE_ENV=development",
+    "env:prod": "cross-env ACTIVE_ENV=production"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.12",
@@ -27,6 +29,8 @@
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.2.0",
     "autoprefixer": "^10.4.13",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7"
   }

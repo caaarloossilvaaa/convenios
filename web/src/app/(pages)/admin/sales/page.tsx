@@ -2,6 +2,7 @@
 
 import { EyeIcon } from '@heroicons/react/20/solid'
 import { useEffect, useState } from 'react'
+import env from '@/../environment'
 
 interface IDetailSale {
   client: string
@@ -24,7 +25,7 @@ export default function Sale() {
   useEffect(() => {
     setLoading(true)
     const saleData = async () => {
-      const res = await fetch('http://localhost:3333/api/sales')
+      const res = await fetch(`${env.API_URL}/sales`)
       const data = await res.json()
       setDataSale(data.sales)
       setLoading(false)
@@ -53,7 +54,7 @@ export default function Sale() {
   }
 
   async function handleCancelSale() {
-    fetch('http://localhost:3333/api/sales/' + selectedSaleId, {
+    fetch(`${env.API_URL}/sales/` + selectedSaleId, {
       method: 'DELETE',
       mode: 'cors',
       cache: 'no-cache',

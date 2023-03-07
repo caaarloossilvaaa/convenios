@@ -6,7 +6,7 @@ export function Header() {
       <h1 className="text-2xl font-semibold text-gray-100">Droga Nossa</h1>
       <div className="flex flex-row gap-4">
         <Link
-          href="/sales/new"
+          href="/"
           className="bg-slate-700 hover:bg-slate-600 py-2 px-4 text-xl font-semibold text-gray-100 rounded-md duration-200"
         >
           Nova Venda
